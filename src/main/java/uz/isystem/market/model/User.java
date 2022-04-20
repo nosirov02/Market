@@ -32,5 +32,6 @@ public class User {
     private Integer imageId;
     @Column(name = ("status"))
     private String status;
-
+    @Column(name = ("address"))
+    private String address;
 }
