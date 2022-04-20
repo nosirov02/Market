@@ -21,21 +21,27 @@ public class User {
     @ManyToOne
     @JoinColumn(name = ("user_type_id"), insertable = false, updatable = false)
     private UserType userType;
-
     @Column(name = ("user_type_id"))
     private Integer userTypeId;
+
     @Column(name = ("name"))
     private String name;
+
     @Column(name = ("surname"))
     private String surname;
+
     @Column(name = ("email"))
     private String email;
+
     @Column(name = ("password"))
     private String password;
+
     @Column(name = ("image_id"))
     private Integer imageId;
+
     @Column(name = ("status"))
     private String status;
+
     @Column(name = ("address"))
     private String address;
 }
