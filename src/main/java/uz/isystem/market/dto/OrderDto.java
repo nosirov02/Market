@@ -1,11 +1,19 @@
 package uz.isystem.market.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 import uz.isystem.market.model.User;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDto {
     private Integer id;
     private User user;
