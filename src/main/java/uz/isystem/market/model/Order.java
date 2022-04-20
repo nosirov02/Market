@@ -16,7 +16,7 @@ public class Order {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = ("user_id"), insertable = false, updatable = false)
     private User user;
 
     @Column(name = ("user_id"))
