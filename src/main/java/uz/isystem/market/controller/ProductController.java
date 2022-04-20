@@ -15,17 +15,25 @@ public class ProductController {
     }
 
 
-    // |- TODO: create function -|
+    // |- Done: create function -|
     @PostMapping
     public ResponseEntity<?> create(@RequestBody ProductDto productDto){
         return ResponseEntity.ok(productService.create(productDto));
     }
 
 
-    // |- TODO: getAll function -|
+    // |- Done: getAll function -|
+    @GetMapping("/get-all")
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok(productService.getAll());
+    }
 
 
     // |- TODO: getOne function -|
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getOne(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(productService.getOne(id));
+    }
 
 
     // |- TODO: update function -|

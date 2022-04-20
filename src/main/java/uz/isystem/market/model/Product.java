@@ -19,6 +19,11 @@ public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    // |- TODO connect productType -|
+
+//    @ManyToOne
+//    @JoinColumn(name = "product_type_id")
+
     @Column(name = ("name"))
     private String name;
 
@@ -34,11 +39,8 @@ public class Product {
     @Column(name = ("visible"))
     private Boolean visible;
 
-    // |- TODO connect productType -|
-
-//    @ManyToOne
-//    @JoinColumn(name = "product_type_id")
-
+    @Column(name = "status")
+    private String status;
 
     @Column(name = ("product_type_id"))
     private String productTypeId;

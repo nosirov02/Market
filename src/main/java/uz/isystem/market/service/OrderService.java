@@ -66,7 +66,7 @@ public class OrderService {
 
     public Order getEntity(Integer id){
         return orderRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Order not found !"));
+                .orElseThrow(() -> new ServerBadRequestException("Order not found !"));
     }
 
     public OrderDto convertEntityToDto(Order entity, OrderDto dto){
