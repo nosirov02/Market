@@ -3,17 +3,19 @@ package uz.isystem.market.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.isystem.market.dto.OrderDto;
+import uz.isystem.market.exception.ServerBadRequestException;
 import uz.isystem.market.model.Order;
 import uz.isystem.market.repository.OrderRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class OrderService {
 
     private final OrderRepository orderRepository;
-
 
 //    Orderni ID bo'yicha olish
 
@@ -31,8 +33,34 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+//    Barcha Orderlarni olish
 
+    public List<OrderDto> getAllOrders(){
+        List<Order> orderList = orderRepository.findAllByDeletedDateIsNull();
+        if(orderList.isEmpty())
+            throw new ServerBadRequestException("Order not found !");
 
+        return orderList.stream()
+                .map(order -> convertEntityToDto(order, new OrderDto()))
+                .collect(Collectors.toList());
+    }
+
+//    Order o'chirish
+
+    public void deleteOrderById(Integer id){
+        Order order = getEntity(id);
+        order.setDeletedDate(LocalDateTime.now());
+        orderRepository.save(order);
+    }
+
+//    Order yangilash
+
+    public void updateOrder(Integer id, OrderDto orderDto){
+        Order order = getEntity(id);
+        convertDtoToEntity(orderDto, order);
+        order.setUpdateDate(LocalDateTime.now());
+        orderRepository.save(order);
+    }
 
     // Secondary functions
 
