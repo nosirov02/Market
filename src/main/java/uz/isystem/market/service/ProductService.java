@@ -5,7 +5,6 @@ import uz.isystem.market.dto.ProductDto;
 import uz.isystem.market.exception.ServerBadRequestException;
 import uz.isystem.market.model.Product;
 import uz.isystem.market.repository.ProductRepository;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -55,11 +54,23 @@ public class ProductService {
         return mapper.map(getEntity(id), ProductDto.class);
     }
 
+    public ProductDto update(Integer id, ProductDto productDto) {
+        Product entity = getEntity(id);
+        entity = mapper.map(productDto, Product.class);
+        entity.setUpdateDate(LocalDateTime.now());
+        productDto = mapper.map(entity, ProductDto.class);
+        setProductType(productDto);
+        return productDto;
+    }
 
+    public void delete(Integer id) {
+
+        Product product = getEntity(id);
+        product.setDeletedDate(LocalDateTime.now());
+        productRepository.save(product);
+    }
 
     // |- Secondary functions -|
-
-
 
     private Product getEntity(Integer id) {
         Optional<Product> optionalProduct = productRepository.getByIdAndDeleted_dateIsNull(id);
