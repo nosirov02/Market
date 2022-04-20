@@ -39,4 +39,13 @@ public class Order {
 
     @Column(name = ("status"))
     private String status;
+
+    @Column(name = ("created_date"))
+    private LocalDateTime createdDate;
+
+    @Column(name = ("update_date"))
+    private LocalDateTime updateDate;
+
+    @Column(name = ("deleted_date"))
+    private LocalDateTime deletedDate;
 }
