@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDto {
     private Integer id;
-    private User user;
+    private UserDto userDto;
     @NotNull(message = "User id cannot be null")
     private Integer userId;
     private LocalDateTime deliveryDate;
