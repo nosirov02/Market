@@ -18,6 +18,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = ("user_type_id"), insertable = false, updatable = false)
+    private UserType userType;
+
+    @Column(name = ("user_type_id"))
+    private Integer userTypeId;
     @Column(name = ("name"))
     private String name;
     @Column(name = ("surname"))
