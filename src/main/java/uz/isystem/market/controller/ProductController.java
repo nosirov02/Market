@@ -29,15 +29,25 @@ public class ProductController {
     }
 
 
-    // |- TODO: getOne function -|
+    // |- DONE: getOne function -|
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getOne(@PathVariable("id") Integer id){
         return ResponseEntity.ok(productService.getOne(id));
     }
 
 
-    // |- TODO: update function -|
+    // |- Done: update function -|
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") Integer id,
+                                    @RequestBody ProductDto productDto){
+        return ResponseEntity.ok(productService.update(id, productDto));
+    }
 
 
-    // |- TODO: delete function -|
+    // |- DONE: delete function -|
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id){
+        productService.delete(id);
+        return ResponseEntity.ok("Ok, deleted!");
+    }
 }
