@@ -25,7 +25,7 @@ public class OrderItemService {
 
     public OrderItemDto get(Integer id){
         OrderItem orderItem = getEntity(id);
-        return convertEntityToDto(OrderItem, new OrderItemDto());
+        return convertEntityToDto(OrderItem , new OrderItemDto());
     }
 
     public void createdOrderItem(OrderItemDto orderItemDto){
