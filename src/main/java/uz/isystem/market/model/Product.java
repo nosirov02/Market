@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -41,4 +42,13 @@ public class Product {
 
     @Column(name = ("product_type_id"))
     private String productTypeId;
+
+    @Column(name = ("created_date"))
+    private LocalDateTime createdDate;
+
+    @Column(name = ("update_date"))
+    private LocalDateTime updateDate;
+
+    @Column(name = ("deleted_date"))
+    private LocalDateTime deletedDate;
 }
