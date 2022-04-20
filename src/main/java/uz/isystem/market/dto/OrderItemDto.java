@@ -2,8 +2,6 @@ package uz.isystem.market.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-import uz.isystem.market.model.Order;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
