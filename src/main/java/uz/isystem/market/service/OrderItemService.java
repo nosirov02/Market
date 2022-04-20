@@ -25,7 +25,7 @@ public class OrderItemService {
 
     public OrderItemDto get(Integer id){
         OrderItem orderItem = getEntity(id);
-        return convertEntityToDto(OrderItem, new OrderItemDto());
+        return convertEntityToDto(orderItem);
     }
 
     public void createdOrderItem(OrderItemDto orderItemDto){
@@ -41,7 +41,7 @@ public class OrderItemService {
             throw new ServerBadRequestException("OrderItem not found!");
 
         return orderItemList.stream()
-                .map(orderItem -> convertEntityToDto(orderItem, new OrderItemDto()))
+                .map(orderItem -> convertEntityToDto(orderItem))
                 .collect(Collectors.toList());
     }
     public void deletedOrderItemById(Integer id){
@@ -60,7 +60,8 @@ public class OrderItemService {
                 .orElseThrow(() -> new IllegalStateException("Order not found!"));
     }
 
-    public OrderItemDto convertEntityToDto (OrderItem entity, OrderItemDto dto){
+    public OrderItemDto convertEntityToDto (OrderItem entity){
+        OrderItemDto dto = new OrderItemDto();
         dto.setId(entity.getId());
         dto.setProductId(entity.getProductId());
         dto.setStatus(entity.getStatus());
