@@ -81,7 +81,7 @@ public class OrderService {
         dto.setCreatedDate(entity.getCreatedDate());
         dto.setUpdateDate(entity.getUpdateDate());
         dto.setDeletedDate(entity.getDeletedDate());
-        // Todo set User entity (Doston aka)
+        // Todo set UserDto to OrderDto (Doston aka)
 
         return dto;
     }
