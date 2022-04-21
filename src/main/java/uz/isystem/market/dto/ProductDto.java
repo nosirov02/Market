@@ -1,11 +1,11 @@
 package uz.isystem.market.dto;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -17,14 +17,16 @@ import java.time.LocalDateTime;
 public class ProductDto {
 
     private Integer id;
-    @NotNull(message = "Product name is mandatory")
+    @NotBlank(message = "Product name is mandatory")
     private String name;
     private String description;
+    @NotNull(message = "Product name is mandatory")
     private Double price;
     private Integer rate;
     private Boolean visible;
     private String status;
-    private String productTypeId;
+    private Integer productTypeId;
+    private ProductTypeDto productTypeDto;
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
     private LocalDateTime deletedDate;

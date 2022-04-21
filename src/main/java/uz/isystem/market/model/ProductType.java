@@ -1,11 +1,12 @@
 package uz.isystem.market.model;
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.tomcat.jni.Local;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -29,5 +30,4 @@ public class ProductType {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
-
 }

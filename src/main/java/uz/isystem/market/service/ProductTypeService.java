@@ -15,8 +15,7 @@ import java.util.Optional;
 
 @Service
 public class ProductTypeService {
-    @Autowired
-    private ProductTypeRepository productTypeRepository;
+    @Autowired private ProductTypeRepository productTypeRepository;
 
     public ProductTypeDto get(Integer id){
         ProductType entity = getEntity(id);

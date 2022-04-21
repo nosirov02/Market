@@ -14,15 +14,19 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductTypeService productTypeService;
     private final ModelMapper mapper;
 
-    public ProductService(ProductRepository productRepository, ModelMapper mapper) {
+    public ProductService(ProductRepository productRepository,
+                          ProductTypeService productTypeService,
+                          ModelMapper mapper) {
         this.productRepository = productRepository;
+        this.productTypeService = productTypeService;
         this.mapper = mapper;
     }
 
     public ProductDto create(ProductDto productDto) {
-        // |- TODO check product type is exist -|
+        productTypeService.getEntity(productDto.getProductTypeId());
         Product product = mapper.map(productDto, Product.class);
         product.setStatus("Active");
         product.setCreatedDate(LocalDateTime.now());
@@ -55,8 +59,9 @@ public class ProductService {
     }
 
     public ProductDto update(Integer id, ProductDto productDto) {
-        Product entity = getEntity(id);
-        entity = mapper.map(productDto, Product.class);
+        getEntity(id);
+        Product entity = mapper.map(productDto, Product.class);
+        entity.setId(id);
         entity.setUpdateDate(LocalDateTime.now());
         productDto = mapper.map(entity, ProductDto.class);
         setProductType(productDto);
@@ -82,6 +87,6 @@ public class ProductService {
     }
 
     private void setProductType(ProductDto productDto) {
-        // TODO: set productType to productDto
+        productDto.setProductTypeDto(productTypeService.get(productDto.getProductTypeId()));
     }
 }

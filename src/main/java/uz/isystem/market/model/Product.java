@@ -19,10 +19,12 @@ public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // |- TODO connect productType -|
+    @ManyToOne
+    @JoinColumn(name = ("product_type_id"), insertable = false, updatable = false)
+    private ProductType productType;
 
-//    @ManyToOne
-//    @JoinColumn(name = "product_type_id")
+    @Column(name = ("product_type_id"))
+    private Integer productTypeId;
 
     @Column(name = ("name"))
     private String name;
@@ -41,9 +43,6 @@ public class Product {
 
     @Column(name = "status")
     private String status;
-
-    @Column(name = ("product_type_id"))
-    private String productTypeId;
 
     @Column(name = ("created_date"))
     private LocalDateTime createdDate;

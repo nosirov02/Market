@@ -1,18 +1,15 @@
 package uz.isystem.market.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.isystem.market.dto.ProductTypeDto;
 import uz.isystem.market.service.ProductTypeService;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("api/product-type")
 public class ProductTypeController {
-    @Autowired
-    private ProductTypeService productTypeService;
+    @Autowired private ProductTypeService productTypeService;
 
     @GetMapping("/id")
     public ResponseEntity<?> get(@PathVariable("id") Integer id){
