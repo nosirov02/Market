@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "order_items")
+@Table(name = ("order_items"))
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +24,14 @@ public class OrderItem {
     @JoinColumn(name = ("order_id"), insertable = false, updatable = false)
     private Order order;
 
-    @Column(name = "order_id")
+    @Column(name = ("order_id"))
     private Integer orderId;
 
     @ManyToOne
     @JoinColumn(name = ("product_id"), insertable = false,updatable = false)
     private Product product;
 
-    @Column(name = "product_id")
+    @Column(name = ("product_id"))
     private Integer productId;
 
     @Column(name = "status")
