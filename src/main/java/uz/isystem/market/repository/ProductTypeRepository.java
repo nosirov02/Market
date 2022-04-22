@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ProductTypeRepository  extends JpaRepository<ProductType, Integer>, JpaSpecificationExecutor<ProductType> {
 
 
-    Optional<ProductType> findByIdAndDeletedDateIsNull(String name );
+    Optional<ProductType> findByIdAndDeletedAtIsNull(String name );
 
-    List<ProductType> findAllByDeletedDateIsNull();
+    List<ProductType> findAllByDeletedAtIsNull();
 }

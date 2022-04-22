@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Integer>, JpaSpecificationExecutor<OrderItem> {
-    Optional<OrderItem> findByIdAndDeletedDateIsNull(Integer id);
+    Optional<OrderItem> findByIdAndDeletedAtIsNull(Integer id);
 
-    List<OrderItem> findAllByDeletedDateIsNull();
+    List<OrderItem> findAllByDeletedAtIsNull();
 }

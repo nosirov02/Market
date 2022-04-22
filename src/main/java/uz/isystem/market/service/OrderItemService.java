@@ -36,7 +36,7 @@ public class OrderItemService {
     }
 
     public List<OrderItemDto> getAllOrderItems(){
-        List<OrderItem> orderItemList = orderItemRepository.findAllByDeletedDateIsNull();
+        List<OrderItem> orderItemList = orderItemRepository.findAllByDeletedAtIsNull();
         if (orderItemList.isEmpty())
             throw new ServerBadRequestException("OrderItem not found!");
 

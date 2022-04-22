@@ -25,7 +25,7 @@ public class ProductTypeService {
     }
 
     public ProductType getEntityByName(String name){
-        Optional<ProductType> optional = productTypeRepository.findByIdAndDeletedDateIsNull(name);
+        Optional<ProductType> optional = productTypeRepository.findByIdAndDeletedAtIsNull(name);
         if (optional.isEmpty()){
             throw new ServerBadRequestException("ProductType not found");
         }

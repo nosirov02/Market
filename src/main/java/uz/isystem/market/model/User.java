@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 
 @Entity
-@Table(name = ("user"))
+@Table(name = ("users"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,9 +42,18 @@ public class User {
     @Column(name = ("image_id"))
     private Integer imageId;
 
+    @Column(name = ("address"))
+    private String address;
+
     @Column(name = ("status"))
     private String status;
 
-    @Column(name = ("address"))
-    private String address;
+    @Column(name = ("created_at"))
+    private LocalDateTime createdAt;
+
+    @Column(name = ("update_at"))
+    private LocalDateTime updateAt;
+
+    @Column(name = ("deleted_at"))
+    private LocalDateTime deletedAt;
 }

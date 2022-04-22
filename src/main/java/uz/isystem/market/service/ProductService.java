@@ -29,7 +29,7 @@ public class ProductService {
         productTypeService.getEntity(productDto.getProductTypeId());
         Product product = mapper.map(productDto, Product.class);
         product.setStatus("Active");
-        product.setCreatedDate(LocalDateTime.now());
+        product.setCreatedAt(LocalDateTime.now());
         productRepository.save(product);
         productDto = mapper.map(product, ProductDto.class);
         setProductType(productDto);
@@ -62,7 +62,7 @@ public class ProductService {
         getEntity(id);
         Product entity = mapper.map(productDto, Product.class);
         entity.setId(id);
-        entity.setUpdateDate(LocalDateTime.now());
+        entity.setUpdateAt(LocalDateTime.now());
         productDto = mapper.map(entity, ProductDto.class);
         setProductType(productDto);
         return productDto;
@@ -71,7 +71,7 @@ public class ProductService {
     public void delete(Integer id) {
 
         Product product = getEntity(id);
-        product.setDeletedDate(LocalDateTime.now());
+        product.setDeletedAt(LocalDateTime.now());
         productRepository.save(product);
     }
 

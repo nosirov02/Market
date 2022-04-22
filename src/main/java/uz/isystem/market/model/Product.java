@@ -13,7 +13,8 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = ("product"))
+@Entity
+@Table(name = ("products"))
 public class Product {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,12 +45,12 @@ public class Product {
     @Column(name = "status")
     private String status;
 
-    @Column(name = ("created_date"))
-    private LocalDateTime createdDate;
+    @Column(name = ("created_at"))
+    private LocalDateTime createdAt;
 
-    @Column(name = ("update_date"))
-    private LocalDateTime updateDate;
+    @Column(name = ("update_at"))
+    private LocalDateTime updateAt;
 
-    @Column(name = ("deleted_date"))
-    private LocalDateTime deletedDate;
+    @Column(name = ("deleted_at"))
+    private LocalDateTime deletedAt;
 }
