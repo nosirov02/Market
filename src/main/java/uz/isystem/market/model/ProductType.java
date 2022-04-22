@@ -1,39 +1,23 @@
 package uz.isystem.market.model;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.tomcat.jni.Local;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "Order")
-
-public class OrderItem {
+@Table(name = "product_type")
+public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = ("order_id"), insertable = false, updatable = false)
-    private Order order;
-
-    @Column(name = "order_id")
-    private Integer orderId;
-
-    @ManyToOne
-    @JoinColumn(name = ("product_id"), insertable = false,updatable = false)
-    private Product product;
-
-    @Column(name = "product_id")
-    private Integer productId;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "status")
     private String status;
@@ -46,7 +30,4 @@ public class OrderItem {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
-
-
-
 }

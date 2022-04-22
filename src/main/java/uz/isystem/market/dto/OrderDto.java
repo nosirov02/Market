@@ -2,7 +2,6 @@ package uz.isystem.market.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-import uz.isystem.market.model.User;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
