@@ -9,9 +9,9 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Query(value = "SELECT * FROM products WHERE deleted_date IS NULL", nativeQuery = true)
+    @Query(value = "SELECT * FROM products WHERE deleted_at IS NULL", nativeQuery = true)
     List<Product> getAllByDeleted_dateIsNull();
 
-    @Query(value = "SELECT * FROM products WHERE id = :id AND deleted_date IS NULL", nativeQuery = true)
+    @Query(value = "SELECT * FROM products WHERE id = :id AND deleted_at IS NULL", nativeQuery = true)
     Optional<Product> getByIdAndDeleted_dateIsNull(Integer id);
 }
