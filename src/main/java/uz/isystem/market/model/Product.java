@@ -42,7 +42,7 @@ public class Product {
     @Column(name = ("visible"))
     private Boolean visible;
 
-    @Column(name = "status")
+    @Column(name = ("status"))
     private String status;
 
     @Column(name = ("created_at"))
