@@ -1,13 +1,20 @@
 package uz.isystem.market.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import uz.isystem.market.dto.OrderDto;
+import uz.isystem.market.dto.OrderFilterDto;
 import uz.isystem.market.exception.ServerBadRequestException;
 import uz.isystem.market.model.Order;
 import uz.isystem.market.repository.OrderRepository;
 
+import javax.persistence.criteria.Predicate;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +46,6 @@ public class OrderService {
         List<Order> orderList = orderRepository.findAllByDeletedDateIsNull();
         if(orderList.isEmpty())
             throw new ServerBadRequestException("Order not found !");
-
         return orderList.stream()
                 .map(order -> convertEntityToDto(order, new OrderDto()))
                 .collect(Collectors.toList());
@@ -62,7 +68,38 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    // Secondary functions
+//    Filtering Order
+
+    public List<Order> filter(OrderFilterDto filterDto){
+        String sortBy = filterDto.getSortBy();
+        if(sortBy == null){
+            sortBy = "createdDate";
+        }
+        Pageable pageable =  PageRequest.of(filterDto.getPage(), filterDto.getSize(), filterDto.getDirection(), sortBy);
+        List<Predicate> predicateList = new LinkedList<>();
+        Specification<Order> specification = ((root, query, criteriaBuilder) -> {
+            if(filterDto.getUserId() != null){
+                predicateList.add(criteriaBuilder.equal(root.get("userId"), filterDto.getUserId()));
+            }
+            if(filterDto.getAddress() != null){
+                predicateList.add(criteriaBuilder.like(root.get("address"), "%" + filterDto.getAddress() + "%"));
+            }
+            if(filterDto.getContact() != null){
+                predicateList.add(criteriaBuilder.like(root.get("contact"), "%" + filterDto.getContact() + "%"));
+            }
+            if(filterDto.getCreatedDate() != null && filterDto.getDeliveredDate() != null){
+                predicateList.add(criteriaBuilder.between(root.get("createdDate"),
+                        filterDto.getCreatedDate(), filterDto.getDeliveredDate()));
+            }
+            return criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
+        });
+
+        Page<Order> certificatePage = orderRepository.findAll(specification, (org.springframework.data.domain.Pageable) pageable);
+        return certificatePage.get().collect(Collectors.toList());
+    }
+
+
+//     Secondary functions
 
     public Order getEntity(Integer id){
         return orderRepository.findById(id)
